@@ -4,15 +4,109 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c0975ba-569f-4b0f-863b-b60b7938b0fd" name="Changes" comment="" />
+    <list default="true" id="7c0975ba-569f-4b0f-863b-b60b7938b0fd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/metro.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nativewind-env.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/explore.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/external-link.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/haptic-tab.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/hello-wave.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/parallax-scroll-view.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/themed-text.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/themed-view.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/collapsible.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/icon-symbol.ios.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/icon-symbol.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/theme.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-color-scheme.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-color-scheme.web.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-theme-color.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/reset-project.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="7.15371361905249E-46" />
+      <entry key="MS500" value="9.35220499529578E-10" />
+      <entry key="S2" value="0.005888988813954231" />
+      <entry key="S5" value="0.16814167925413487" />
+      <entry key="S10" value="0.6041950058313708" />
+      <entry key="S30" value="1.9591990288386572" />
+      <entry key="S60" value="2.991969077377149" />
+      <entry key="M2" value="3.9995559182205107" />
+      <entry key="M5" value="10.144823498260228" />
+      <entry key="M10" value="22.946208185884853" />
+      <entry key="M15" value="31.7479727590211" />
+      <entry key="M30" value="44.75269340476735" />
+      <entry key="H1" value="53.43440846939051" />
+      <entry key="H2" value="58.45782925390907" />
+      <entry key="H4" value="61.160818087624705" />
+      <entry key="D1" value="63.517055697183224" />
+      <entry key="W1" value="63.93076537874511" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0" />
+      <entry key="M10" value="1.0" />
+      <entry key="M15" value="1.0" />
+      <entry key="M30" value="1.0" />
+      <entry key="H1" value="1.0" />
+      <entry key="H2" value="1.0" />
+      <entry key="H4" value="1.0" />
+      <entry key="D1" value="1.0" />
+      <entry key="W1" value="1.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="2.9120973036176693E-27" />
+      <entry key="MS500" value="4.930148463950856E-6" />
+      <entry key="S2" value="0.0510011631641742" />
+      <entry key="S5" value="0.42367134660684164" />
+      <entry key="S10" value="1.0554021412954766" />
+      <entry key="S30" value="2.672725798441813" />
+      <entry key="S60" value="3.821942574662984" />
+      <entry key="M2" value="4.905375527847373" />
+      <entry key="M5" value="11.103587103677665" />
+      <entry key="M10" value="23.923939937722082" />
+      <entry key="M15" value="32.73245585501211" />
+      <entry key="M30" value="45.74445445059468" />
+      <entry key="H1" value="54.43013076812346" />
+      <entry key="H2" value="59.45564481887617" />
+      <entry key="H4" value="62.15971362477634" />
+      <entry key="D1" value="64.51686984230165" />
+      <entry key="W1" value="64.93073878347235" />
+    </decayedShown>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
@@ -23,24 +117,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\devRasen\\Projects\\Personal\\React_Native\\react_native-recurrly\\node_modules\\typescript\\lib&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -56,11 +155,40 @@
       <option name="presentableId" value="Default" />
       <updated>1786036668973</updated>
       <workItem from="1786036670647" duration="60000" />
-      <workItem from="1786036741958" duration="331000" />
+      <workItem from="1786036741958" duration="1933000" />
+      <workItem from="1786038698741" duration="129000" />
+      <workItem from="1786038931586" duration="1273000" />
+      <workItem from="1786040241926" duration="1314000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
