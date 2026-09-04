@@ -1,38 +1,111 @@
 import "@/global.css";
-import { Link } from "expo-router";
-import { styled } from "nativewind";
-import { Text, View } from "react-native";
-import { SafeAreaView as RNSafeAreaView } from "react-native-safe-area-context";
+// 1. Added ScrollView to the imports
+import { FlatList, Image, ScrollView, Text, View } from "react-native";
+// 2. Import SafeAreaView directly (no need for 'styled' in modern NativeWind)
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const SafeAreaView = styled(RNSafeAreaView);
+import ListHeading from "@/components/ListHeading";
+import SubscriptionCard from "@/components/SubscriptionCard";
+import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
+import {
+  HOME_BALANCE,
+  HOME_SUBSCRIPTIONS,
+  HOME_USER,
+  UPCOMING_SUBSCRIPTIONS,
+} from "@/constants/data";
+import { icons } from "@/constants/icons";
+import images from "@/constants/images";
+import { formatCurrency } from "@/lib/utils";
+import dayjs from "dayjs";
+import { useState } from "react";
 
 export default function App() {
+  const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
+    string | null
+  >(null);
+
   return (
     <SafeAreaView className="flex-1 bg-background">
-      <View className="flex-1 p-5">
-        <Text className="text-7xl font-sans-extrabold">Home</Text>
+      {/* 3. Changed View to ScrollView and used contentContainerClassName for padding */}
+      <ScrollView
+        contentContainerClassName="p-5 pb-20"
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="home-header">
+          <View className="home-user">
+            <Image
+              source={images.avatar}
+              className="home-avatar"
+              style={{ width: 64, height: 64, borderRadius: 32 }}
+            />
+            <Text className="home-user-name">{HOME_USER.name}</Text>
+          </View>
 
-        <Link
-          href="/onboarding"
-          className="mt-4 rounded bg-primary p-4 font-sans-bold text-white"
-        >
-          Go to Onboarding
-        </Link>
+          <Image
+            source={icons.add}
+            className="home-add-icon"
+            style={{ width: 48, height: 48 }}
+          />
+        </View>
 
-        <Link
-          href="/(auth)/sign-in"
-          className="mt-4 rounded bg-primary p-4 font-sans-bold text-white"
-        >
-          Go to Sign In
-        </Link>
+        <View className="home-balance-card">
+          <Text className="home-balance-label">Balance</Text>
 
-        <Link
-          href="/(auth)/sign-up"
-          className="mt-4 rounded bg-primary p-4 font-sans-bold text-white"
-        >
-          Go to Sign Up
-        </Link>
-      </View>
+          <View className="home-balance-row">
+            <Text className="home-balance-amount">
+              {formatCurrency(HOME_BALANCE?.amount)}
+            </Text>
+            <Text className="home-balance-date">
+              {dayjs(HOME_BALANCE?.nextRenewalDate).format("MM/DD")}
+            </Text>
+          </View>
+        </View>
+
+        <View>
+          <ListHeading title="Upcoming" />
+
+          <FlatList
+            data={UPCOMING_SUBSCRIPTIONS}
+            renderItem={({ item }) => <UpcomingSubscriptionCard data={item} />}
+            keyExtractor={(item) => item.id}
+            // 4. Added horizontal scrolling props for the cards!
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerClassName="pb-5" // Adds a little breathing room below the cards
+            ListEmptyComponent={
+              <Text className="home-empty-state">
+                No upcoming renewals yet.
+              </Text>
+            }
+          />
+        </View>
+
+        <View>
+          <ListHeading title="All Subscriptions" />
+          <FlatList
+            data={HOME_SUBSCRIPTIONS}
+            renderItem={({ item }) => (
+              <SubscriptionCard
+                {...item}
+                expanded={expandedSubscriptionId === item.id}
+                onPress={() =>
+                  setExpandedSubscriptionId((currentId) =>
+                    currentId === item.id ? null : item.id,
+                  )
+                }
+              />
+            )}
+            keyExtractor={(item) => item.id}
+            extraData={expandedSubscriptionId}
+            ItemSeparatorComponent={() => <View className="h-4" />}
+            showsHorizontalScrollIndicator={false}
+            ListEmptyComponent={
+              <Text className="home-empty-state">No subscriptions found.</Text>
+            }
+            contentContainerClassName="pb-10"
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
