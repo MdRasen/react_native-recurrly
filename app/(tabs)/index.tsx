@@ -1,9 +1,8 @@
 import "@/global.css";
-// 1. Added ScrollView to the imports
-import { FlatList, Image, ScrollView, Text, View } from "react-native";
-// 2. Import SafeAreaView directly (no need for 'styled' in modern NativeWind)
+import { FlatList, Image, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import CreateSubscriptionModal from "@/components/CreateSubscriptionModal";
 import ListHeading from "@/components/ListHeading";
 import SubscriptionCard from "@/components/SubscriptionCard";
 import UpcomingSubscriptionCard from "@/components/UpcomingSubscriptionCard";
@@ -21,13 +20,16 @@ import { usePostHog } from "posthog-react-native";
 import { useCallback, useState } from "react";
 
 export default function App() {
+  const [subscriptions, setSubscriptions] =
+    useState<Subscription[]>(HOME_SUBSCRIPTIONS);
   const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
     string | null
   >(null);
+  const [modalVisible, setModalVisible] = useState(false);
   const posthog = usePostHog();
 
   const handleSubscriptionPress = useCallback(
-    (subscription: (typeof HOME_SUBSCRIPTIONS)[number]) => {
+    (subscription: Subscription) => {
       const isExpanded = expandedSubscriptionId !== subscription.id;
 
       posthog?.capture("subscription_details_toggled", {
@@ -41,9 +43,21 @@ export default function App() {
     [expandedSubscriptionId, posthog],
   );
 
+  const handleCreateSubscription = useCallback(
+    (newSub: Subscription) => {
+      setSubscriptions((prev) => [newSub, ...prev]);
+
+      posthog?.capture("subscription_created", {
+        subscription_id: newSub.id,
+        subscription_category: newSub.category,
+        subscription_billing: newSub.billing,
+      });
+    },
+    [posthog],
+  );
+
   return (
     <SafeAreaView className="flex-1 bg-background">
-      {/* 3. Changed View to ScrollView and used contentContainerClassName for padding */}
       <ScrollView
         contentContainerClassName="p-5 pb-20"
         showsVerticalScrollIndicator={false}
@@ -58,11 +72,13 @@ export default function App() {
             <Text className="home-user-name">{HOME_USER.name}</Text>
           </View>
 
-          <Image
-            source={icons.add}
-            className="home-add-icon"
-            style={{ width: 48, height: 48 }}
-          />
+          <Pressable onPress={() => setModalVisible(true)}>
+            <Image
+              source={icons.add}
+              className="home-add-icon"
+              style={{ width: 48, height: 48 }}
+            />
+          </Pressable>
         </View>
 
         <View className="home-balance-card">
@@ -85,10 +101,9 @@ export default function App() {
             data={UPCOMING_SUBSCRIPTIONS}
             renderItem={({ item }) => <UpcomingSubscriptionCard data={item} />}
             keyExtractor={(item) => item.id}
-            // 4. Added horizontal scrolling props for the cards!
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerClassName="pb-5" // Adds a little breathing room below the cards
+            contentContainerClassName="pb-5"
             ListEmptyComponent={
               <Text className="home-empty-state">
                 No upcoming renewals yet.
@@ -100,7 +115,7 @@ export default function App() {
         <View>
           <ListHeading title="All Subscriptions" />
           <FlatList
-            data={HOME_SUBSCRIPTIONS}
+            data={subscriptions}
             renderItem={({ item }) => (
               <SubscriptionCard
                 {...item}
@@ -119,6 +134,12 @@ export default function App() {
           />
         </View>
       </ScrollView>
+
+      <CreateSubscriptionModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onCreate={handleCreateSubscription}
+      />
     </SafeAreaView>
   );
 }
