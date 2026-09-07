@@ -162,23 +162,44 @@
 @utility sub-billing {
   @apply text-sm font-sans-medium text-muted-foreground;
 }
-@utility sub-body {
-  @apply mt-6 gap-4;
+@utility sub-exp {
+  @apply mt-2 gap-4;
 }
-@utility sub-details {
-  @apply gap-6;
+@utility sub-divider {
+  @apply h-px bg-primary/10;
 }
-@utility sub-row {
-  @apply flex-row items-center justify-between gap-3;
+@utility sub-badge-row {
+  @apply flex-row items-center gap-2;
 }
-@utility sub-row-copy {
-  @apply min-w-0 flex-1 flex-row items-center gap-2;
+@utility sub-badge {
+  @apply flex-row items-center gap-1.5 rounded-full px-3 py-1;
 }
-@utility sub-label {
-  @apply shrink-0 text-base font-sans-medium text-muted-foreground;
+@utility sub-badge-dot {
+  @apply size-2 rounded-full;
 }
-@utility sub-value {
-  @apply flex-1 font-sans-bold text-primary;
+@utility sub-badge-text {
+  @apply text-xs font-sans-bold;
+}
+@utility sub-plan-pill {
+  @apply rounded-full border border-primary/15 px-3 py-1;
+}
+@utility sub-plan-pill-text {
+  @apply text-xs font-sans-semibold text-muted-foreground;
+}
+@utility sub-tile-grid {
+  @apply flex-row flex-wrap gap-3;
+}
+@utility sub-tile {
+  @apply min-w-[46%] flex-1 gap-1 rounded-xl bg-primary/5 p-3;
+}
+@utility sub-tile-full {
+  @apply w-full;
+}
+@utility sub-tile-label {
+  @apply text-xs font-sans-semibold text-muted-foreground;
+}
+@utility sub-tile-value {
+  @apply text-sm font-sans-bold text-primary;
 }
 @utility sub-cancel {
   @apply mt-2 items-center rounded-full bg-primary py-4;
@@ -188,6 +209,41 @@
 }
 @utility sub-cancel-text {
   @apply font-sans-bold text-background;
+}
+
+/* --- SUBSCRIPTIONS SCREEN --- */
+@utility subs-screen-title {
+  @apply mb-4 text-3xl font-sans-bold text-primary;
+}
+@utility subs-search-bar {
+  @apply mb-4 flex-row items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3;
+}
+@utility subs-search-icon {
+  @apply size-5 opacity-40;
+}
+@utility subs-search-input {
+  @apply min-w-0 flex-1 py-0 text-base font-sans-medium text-primary outline-none;
+}
+@utility subs-search-clear {
+  @apply size-7 items-center justify-center rounded-full bg-muted;
+}
+@utility subs-search-clear-text {
+  @apply text-xs font-sans-bold text-muted-foreground;
+}
+@utility subs-chip-row {
+  @apply mb-2 flex-row flex-wrap gap-2;
+}
+@utility subs-result-count {
+  @apply mb-1 text-sm font-sans-medium text-muted-foreground;
+}
+@utility subs-empty {
+  @apply mt-16 items-center gap-2;
+}
+@utility subs-empty-title {
+  @apply text-xl font-sans-bold text-primary;
+}
+@utility subs-empty-subtitle {
+  @apply text-sm font-sans-medium text-muted-foreground;
 }
 
 /* --- AUTH SCREENS --- */
