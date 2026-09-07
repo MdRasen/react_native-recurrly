@@ -7,6 +7,7 @@ import { PostHogErrorBoundary, PostHogProvider } from "posthog-react-native";
 import { useEffect, useRef } from "react";
 
 import { posthog } from "@/lib/posthog";
+import { SubscriptionsProvider } from "@/context/SubscriptionsContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -69,16 +70,18 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        {posthog ? (
-          <PostHogProvider client={posthog}>
-            <PostHogIdentity />
-            <PostHogErrorBoundary>
-              <Stack screenOptions={{ headerShown: false }} />
-            </PostHogErrorBoundary>
-          </PostHogProvider>
-        ) : (
-          <Stack screenOptions={{ headerShown: false }} />
-        )}
+        <SubscriptionsProvider>
+          {posthog ? (
+            <PostHogProvider client={posthog}>
+              <PostHogIdentity />
+              <PostHogErrorBoundary>
+                <Stack screenOptions={{ headerShown: false }} />
+              </PostHogErrorBoundary>
+            </PostHogProvider>
+          ) : (
+            <Stack screenOptions={{ headerShown: false }} />
+          )}
+        </SubscriptionsProvider>
       </ClerkLoaded>
     </ClerkProvider>
   );

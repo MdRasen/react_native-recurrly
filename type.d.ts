@@ -29,9 +29,13 @@ declare global {
     }
 
     interface SubscriptionCardProps extends Omit<Subscription, "id"> {
+        id?: string;
         expanded: boolean;
         onPress: () => void;
+        onToggleAutoRenew?: () => void;
         onCancelPress?: () => void;
+        onReactivatePress?: () => void;
+        onDeletePress?: () => void;
         isCancelling?: boolean;
     }
 
@@ -49,6 +53,7 @@ declare global {
 
     interface ListHeadingProps {
         title: string;
+        onViewAll?: () => void;
     }
 }
 

@@ -64,13 +64,13 @@
   @apply mb-2.5 flex-row items-center justify-between;
 }
 @utility home-user {
-  @apply flex-row items-center;
+  @apply flex-row items-center gap-3.5;
 }
 @utility home-avatar {
-  @apply size-16 rounded-full;
+  @apply size-13 rounded-full;
 }
 @utility home-user-name {
-  @apply ml-4 text-2xl font-sans-bold text-primary;
+  @apply text-xl font-sans-bold text-primary;
 }
 @utility home-add-icon {
   @apply size-12;
@@ -394,4 +394,95 @@
 }
 @utility category-chip-text-active {
   @apply text-accent;
+}
+
+/* --- INSIGHTS --- */
+@utility insights-chart-card {
+  @apply rounded-2xl border border-border bg-card p-5;
+}
+@utility insights-chart-y-label {
+  @apply text-xs font-sans-medium text-muted-foreground;
+}
+@utility insights-chart-day {
+  @apply text-xs font-sans-medium text-muted-foreground;
+}
+@utility insights-chart-tooltip {
+  @apply rounded-lg bg-accent px-2.5 py-1;
+}
+@utility insights-chart-tooltip-text {
+  @apply text-xs font-sans-bold text-white;
+}
+@utility insights-expense-card {
+  @apply rounded-2xl border border-border bg-card p-5;
+}
+@utility insights-expense-row {
+  @apply flex-row items-center justify-between;
+}
+@utility insights-expense-label {
+  @apply text-lg font-sans-bold text-primary;
+}
+@utility insights-expense-amount {
+  @apply text-2xl font-sans-extrabold text-primary;
+}
+@utility insights-expense-meta {
+  @apply text-sm font-sans-medium text-muted-foreground;
+}
+@utility insights-expense-change {
+  @apply text-sm font-sans-bold text-success;
+}
+
+/* --- SETTINGS --- */
+@utility settings-title {
+  @apply mb-6 text-3xl font-sans-bold text-primary;
+}
+@utility settings-section-label {
+  @apply mb-2 ml-1 text-xs font-sans-semibold uppercase tracking-widest text-muted-foreground;
+}
+@utility settings-card {
+  @apply mb-6 overflow-hidden rounded-2xl border border-border bg-card;
+}
+@utility settings-row {
+  @apply flex-row items-center px-4 py-3.5;
+}
+@utility settings-row-icon-wrap {
+  @apply mr-3 size-9 items-center justify-center rounded-xl;
+}
+@utility settings-row-label {
+  @apply min-w-0 flex-1 text-base font-sans-medium text-primary;
+}
+@utility settings-row-value {
+  @apply text-sm font-sans-medium text-muted-foreground;
+}
+@utility settings-row-chevron {
+  @apply ml-1 text-lg font-sans-medium text-muted-foreground;
+}
+@utility settings-divider {
+  @apply ml-16 h-px bg-border;
+}
+@utility settings-profile-card {
+  @apply mb-6 flex-row items-center gap-4 rounded-2xl border border-border bg-card p-5;
+}
+@utility settings-profile-avatar {
+  @apply items-center justify-center rounded-full bg-accent;
+}
+@utility settings-profile-avatar-text {
+  @apply text-xl font-sans-bold text-background;
+}
+@utility settings-profile-name {
+  @apply text-lg font-sans-bold text-primary;
+}
+@utility settings-profile-email {
+  @apply text-sm font-sans-medium text-muted-foreground;
+}
+@utility settings-sign-out {
+  @apply mb-6 items-center rounded-2xl border border-destructive/30 bg-destructive/10 py-4;
+}
+@utility settings-sign-out-text {
+  @apply text-base font-sans-bold text-destructive;
+}
+@utility settings-version {
+  @apply mb-4 items-center;
+}
+@utility settings-version-text {
+  @apply text-xs font-sans-medium text-muted-foreground;
 }

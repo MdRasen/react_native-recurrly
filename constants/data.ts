@@ -43,6 +43,36 @@ export const UPCOMING_SUBSCRIPTIONS: UpcomingSubscription[] = [
   },
 ];
 
+export interface WeeklySpending {
+  day: string;
+  amount: number;
+}
+
+export interface ExpenseSummary {
+  total: number;
+  month: string;
+  year: number;
+  changePercent: number;
+}
+
+
+export const INSIGHTS_WEEKLY_SPENDING: WeeklySpending[] = [
+  { day: "Mon", amount: 32 },
+  { day: "Tue", amount: 28 },
+  { day: "Wed", amount: 35 },
+  { day: "Thu", amount: 40 },
+  { day: "Fri", amount: 30 },
+  { day: "Sat", amount: 22 },
+  { day: "Sun", amount: 18 },
+];
+
+export const INSIGHTS_EXPENSES: ExpenseSummary = {
+  total: 424.63,
+  month: "March",
+  year: 2026,
+  changePercent: 12,
+};
+
 export const HOME_SUBSCRIPTIONS: Subscription[] = [
   {
     id: "adobe-creative-cloud",
