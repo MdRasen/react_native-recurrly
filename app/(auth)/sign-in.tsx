@@ -12,9 +12,11 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { usePostHog } from "posthog-react-native";
 
 const SignIn = () => {
   const { signIn, setActive, isLoaded } = useSignIn();
+  const posthog = usePostHog();
   const router = useRouter();
 
   const [emailAddress, setEmailAddress] = useState("");
@@ -36,6 +38,7 @@ const SignIn = () => {
 
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
+        posthog?.capture("sign_in_completed");
         router.replace("/(tabs)");
       } else {
         // Handle other statuses (e.g., needs_factor_two)
@@ -50,7 +53,7 @@ const SignIn = () => {
     } finally {
       setLoading(false);
     }
-  }, [isLoaded, signIn, emailAddress, password, setActive, router]);
+  }, [isLoaded, signIn, emailAddress, password, setActive, posthog, router]);
 
   const isDisabled = !emailAddress || !password || loading;
 

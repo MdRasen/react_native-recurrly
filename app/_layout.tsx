@@ -1,9 +1,12 @@
 import "@/global.css";
-import { ClerkProvider, ClerkLoaded } from "@clerk/expo";
+import { ClerkProvider, ClerkLoaded, useUser } from "@clerk/expo";
 import { tokenCache } from "@clerk/expo/token-cache";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
-import { useEffect } from "react";
+import { PostHogErrorBoundary, PostHogProvider } from "posthog-react-native";
+import { useEffect, useRef } from "react";
+
+import { posthog } from "@/lib/posthog";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -13,6 +16,34 @@ if (!publishableKey) {
   throw new Error(
     "Missing EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY – add it to your .env file",
   );
+}
+
+function PostHogIdentity() {
+  const { isLoaded, isSignedIn, user } = useUser();
+  const identifiedUserId = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!isLoaded || !isSignedIn || !user) {
+      identifiedUserId.current = null;
+      return;
+    }
+
+    if (identifiedUserId.current === user.id) {
+      return;
+    }
+
+    const email = user.primaryEmailAddress?.emailAddress;
+    posthog?.identify(user.id, {
+      $set: {
+        ...(email ? { email } : {}),
+        ...(user.firstName ? { first_name: user.firstName } : {}),
+        ...(user.lastName ? { last_name: user.lastName } : {}),
+      },
+    });
+    identifiedUserId.current = user.id;
+  }, [isLoaded, isSignedIn, user]);
+
+  return null;
 }
 
 export default function RootLayout() {
@@ -38,7 +69,16 @@ export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <Stack screenOptions={{ headerShown: false }} />
+        {posthog ? (
+          <PostHogProvider client={posthog}>
+            <PostHogIdentity />
+            <PostHogErrorBoundary>
+              <Stack screenOptions={{ headerShown: false }} />
+            </PostHogErrorBoundary>
+          </PostHogProvider>
+        ) : (
+          <Stack screenOptions={{ headerShown: false }} />
+        )}
       </ClerkLoaded>
     </ClerkProvider>
   );

@@ -17,12 +17,29 @@ import { icons } from "@/constants/icons";
 import images from "@/constants/images";
 import { formatCurrency } from "@/lib/utils";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { usePostHog } from "posthog-react-native";
+import { useCallback, useState } from "react";
 
 export default function App() {
   const [expandedSubscriptionId, setExpandedSubscriptionId] = useState<
     string | null
   >(null);
+  const posthog = usePostHog();
+
+  const handleSubscriptionPress = useCallback(
+    (subscription: (typeof HOME_SUBSCRIPTIONS)[number]) => {
+      const isExpanded = expandedSubscriptionId !== subscription.id;
+
+      posthog?.capture("subscription_details_toggled", {
+        subscription_id: subscription.id,
+        subscription_category: subscription.category,
+        subscription_status: subscription.status,
+        is_expanded: isExpanded,
+      });
+      setExpandedSubscriptionId(isExpanded ? subscription.id : null);
+    },
+    [expandedSubscriptionId, posthog],
+  );
 
   return (
     <SafeAreaView className="flex-1 bg-background">
@@ -88,11 +105,7 @@ export default function App() {
               <SubscriptionCard
                 {...item}
                 expanded={expandedSubscriptionId === item.id}
-                onPress={() =>
-                  setExpandedSubscriptionId((currentId) =>
-                    currentId === item.id ? null : item.id,
-                  )
-                }
+                onPress={() => handleSubscriptionPress(item)}
               />
             )}
             keyExtractor={(item) => item.id}

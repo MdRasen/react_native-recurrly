@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { posthog } from "@/lib/posthog";
+
 const Settings = () => {
   const { signOut } = useAuth();
   const { user } = useUser();
@@ -20,6 +22,8 @@ const Settings = () => {
     setLoggingOut(true);
     try {
       await signOut();
+      posthog?.capture("sign_out_completed");
+      posthog?.reset();
       router.replace("/(auth)/sign-in");
     } catch {
       setLoggingOut(false);

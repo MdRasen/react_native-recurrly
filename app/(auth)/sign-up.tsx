@@ -12,9 +12,11 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { usePostHog } from "posthog-react-native";
 
 const SignUp = () => {
   const { signUp, setActive, isLoaded } = useSignUp();
+  const posthog = usePostHog();
   const router = useRouter();
 
   const [emailAddress, setEmailAddress] = useState("");
@@ -34,6 +36,7 @@ const SignUp = () => {
     try {
       await signUp.create({ emailAddress, password });
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
+      posthog?.capture("sign_up_started");
       setPendingVerification(true);
     } catch (err: any) {
       const message =
@@ -44,7 +47,7 @@ const SignUp = () => {
     } finally {
       setLoading(false);
     }
-  }, [isLoaded, signUp, emailAddress, password]);
+  }, [isLoaded, signUp, emailAddress, password, posthog]);
 
   // Step 2: Verify the email code
   const onVerify = useCallback(async () => {
@@ -58,6 +61,7 @@ const SignUp = () => {
 
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
+        posthog?.capture("sign_up_completed");
         router.replace("/(tabs)");
       } else {
         setError("Verification incomplete. Please try again.");
@@ -71,7 +75,7 @@ const SignUp = () => {
     } finally {
       setLoading(false);
     }
-  }, [isLoaded, signUp, code, setActive, router]);
+  }, [isLoaded, signUp, code, setActive, posthog, router]);
 
   // Verification code screen
   if (pendingVerification) {
